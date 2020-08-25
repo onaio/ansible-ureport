@@ -1,7 +1,36 @@
 ---
 - name: Converge
   hosts: all
-  tasks:
-    - name: "Include role"
-      include_role:
-        name: "ansible-ureport"
+  vars:
+    ansible_python_interpreter: /usr/bin/env python3
+    ureport_domain: ureport.example.com
+  roles:
+    - role: onaio.postgresql
+      vars:
+        postgresql_version: 10
+        postgresql_users:
+          - name: ureport
+            pass: ureport
+            encrypted: true
+        postgresql_databases:
+          - name: ureport
+            owner: ureport
+            encoding: UTF-8
+            hstore: true
+        postgresql_database_extensions:
+          - db: ureport
+            extensions:
+              - hstore
+        postgresql_backup_enabled: false
+        postgresql_enable_ssl: true
+        postgresql_ssl_domain: "db.example.com"
+        postgresql_ssl_ca_key: "{{ lookup('file', 'ssl/root.key') }}"
+        postgresql_ssl_ca_cert: "{{ lookup('file', 'ssl/root.crt') }}"
+
+    - role: DavidWittman.redis
+      vars:
+        redis_version: "2.8.24"
+
+    - role: ansible-ureport
+      vars:
+        ureport_postgresql_password: ureport
