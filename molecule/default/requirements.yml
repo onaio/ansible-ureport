@@ -1,0 +1,26 @@
+---
+- src: https://github.com/onaio/ansible-django.git
+  name: onaio.django
+  scm: git
+
+- src: https://github.com/onaio/ansible-postgresql.git
+  name: onaio.postgresql
+  scm: git
+
+- src: https://github.com/onaio/ansible-gpg-import.git
+  name: onaio.gpg-import
+  scm: git
+
+- src: https://github.com/onaio/ansible-backup.git
+  name: onaio.backup
+  scm: git
+
+- src: DavidWittman.redis
+
+- src: https://github.com/onaio/ansible-ssl-certificate.git
+  name: onaio.ssl-certificate
+  scm: git
+
+- src: https://github.com/onaio/postgresql.git
+  name: ANXS.postgresql
+  scm: git

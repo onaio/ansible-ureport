@@ -1,4 +1,4 @@
-Ansible Role [![Build Status](https://github.com/onaio/ansible-role/workflows/CI/badge.svg)](https://github.com/onaio/ansible-role/actions?query=workflow%3ACI)
+Ansible Role [![Build Status](https://github.com/onaio/ansible-ureport/workflows/CI/badge.svg)](https://github.com/onaio/ansible-ureport/actions?query=workflow%3ACI)
 =========
 
 A brief description of the role goes here.
