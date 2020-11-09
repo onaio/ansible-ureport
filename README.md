@@ -1,22 +1,27 @@
-Ansible Role [![Build Status](https://github.com/onaio/ansible-ureport/workflows/CI/badge.svg)](https://github.com/onaio/ansible-ureport/actions?query=workflow%3ACI)
+onaio - U-Report [![Build Status](https://github.com/onaio/ansible-ureport/workflows/CI/badge.svg)](https://github.com/onaio/ansible-ureport/actions?query=workflow%3ACI)
 =========
 
-A brief description of the role goes here.
+Installs and configures [U-Report](https://github.com/rapidpro/ureport/)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+U-Report has the following requirements:
+
+- PostgreSQL
+- Redis
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Check the [defaults/main.yml](./defaults/main.yml) file for the full list of default variables.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Here's the list of role dependencies:
+
+- [onaio.django](https://github.com/onaio/ansible-django)
 
 Example Playbook
 ----------------
@@ -24,9 +29,34 @@ Example Playbook
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 ```yml
-- hosts: servers
+---
+- hosts: all
   roles:
-    - { role: username.rolename, x: 42 }
+    - role: onaio.postgresql
+      vars:
+        postgresql_version: 10
+        postgresql_users:
+          - name: ureport
+            pass: ureport
+            encrypted: true
+        postgresql_databases:
+          - name: ureport
+            owner: ureport
+            encoding: UTF-8
+            hstore: true
+        postgresql_database_extensions:
+          - db: ureport
+            extensions:
+              - hstore
+        postgresql_backup_enabled: false
+
+    - role: DavidWittman.redis
+      vars:
+        redis_version: "2.8.24"
+
+    - role: ansible-ureport
+      vars:
+        ureport_postgresql_password: ureport
 ```
 
 License
