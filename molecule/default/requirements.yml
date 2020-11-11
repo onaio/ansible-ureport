@@ -24,3 +24,7 @@
 - src: https://github.com/onaio/postgresql.git
   name: ANXS.postgresql
   scm: git
+
+- src: https://github.com/onaio/ansible-monit.git
+  name: onaio.monit
+  scm: git
