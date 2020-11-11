@@ -5,6 +5,12 @@
     ansible_python_interpreter: /usr/bin/env python3
     ureport_domain: ureport.example.com
   roles:
+    - role: onaio.monit
+      vars:
+        slack_monit_endpoint: ""
+        monit_setup_mode: true
+        monit_scripts: ["monit"]
+
     - role: onaio.postgresql
       vars:
         postgresql_version: 10
