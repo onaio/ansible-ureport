@@ -90,8 +90,8 @@ ureport_wsgi_module: "ureport.wsgi:application"
 
 # celery
 ureport_celery_app: "ureport.celery:app"
-ureport_celeryd_nodes: "{{ ureport_domain }} sync_node"
-ureport_celeryd_opts: "-E --autoscale=4,1 -O fair -Q:{{ ureport_domain }} celery -Q:sync_node sync"
+ureport_celeryd_nodes: "{{ ureport_domain }} sync_node slow_node"
+ureport_celeryd_opts: "-E --autoscale=4,1 -O fair -Q:{{ ureport_domain }} celery -Q:sync_node sync -Q:slow_node slow"
 ureport_celeryd_extra_env_vars:
   DATABASE_URL: '"{{ ureport_database_url }}"'
   AWS_ACCESS_KEY_ID: '"{{ ureport_aws_access_key }}"'

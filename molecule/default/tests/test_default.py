@@ -19,6 +19,7 @@ def test_ureport_services(host):
     assert celery_beat.is_running
     assert celery_beat.is_enabled
 
+
 def test_ureport_app_files(host):
     app_dir = host.file("/home/ureport/app")
     assert app_dir.exists
