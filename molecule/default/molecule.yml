@@ -11,6 +11,8 @@ platforms:
     command: /sbin/init
 provisioner:
   name: ansible
+  options:
+    e: ureport_git_branch=${UREPORT_VERSION}
 scenario:
   name: default
   test_sequence:

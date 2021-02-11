@@ -6,7 +6,7 @@ ureport_system_user_home: "/home/{{ ureport_system_user }}"
 
 # git
 ureport_git_url: "https://github.com/rapidpro/ureport.git"
-ureport_git_branch: "v1.1.173"
+ureport_git_branch: ""
 
 # system-wide dependencies
 ureport_python_source_version: "3.6"
@@ -53,7 +53,7 @@ ureport_environment_vars:
   - DATABASE_URL: "{{ ureport_database_url }}"
   - AWS_ACCESS_KEY_ID: "{{ ureport_aws_access_key }}"
   - AWS_SECRET_ACCESS_KEY: "{{ ureport_aws_secret_key }}"
-  - RAVEN_DSN: "{{ ureport_raven_dsn }}"
+  - SENTRY_DSN: "{{ ureport_sentry_dsn }}"
 
 ureport_django_settings_template_path: "settings.py.j2"
 ureport_local_settings_path: "{{ ureport_checkout_path }}/ureport/settings.py"
@@ -82,8 +82,8 @@ ureport_aws_secret_key:
 # S3
 ureport_s3_bucket:
 
-# raven
-ureport_raven_dsn:
+# sentry
+ureport_sentry_dsn:
 
 # wsgi
 ureport_wsgi_module: "ureport.wsgi:application"
@@ -96,7 +96,7 @@ ureport_celeryd_extra_env_vars:
   DATABASE_URL: '"{{ ureport_database_url }}"'
   AWS_ACCESS_KEY_ID: '"{{ ureport_aws_access_key }}"'
   AWS_SECRET_ACCESS_KEY: '"{{ ureport_aws_secret_key }}"'
-  RAVEN_DSN: '"{{ ureport_raven_dsn }}"'
+  SENTRY_DSN: '"{{ ureport_sentry_dsn }}"'
 ureport_celerybeat_extra_env_vars: "{{ ureport_celeryd_extra_env_vars }}"
 
 # smtp
@@ -108,5 +108,4 @@ ureport_smtp_use_tls: "True"
 
 ureport_domain:
 ureport_rapidpro_domain:
-ureport_session_cookie_domain:
 ureport_is_production: "True"
