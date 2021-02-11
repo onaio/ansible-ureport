@@ -22,7 +22,7 @@ jobs:
           path: "${{ github.repository }}"
 
       - name: Run Molecule tests
-        uses: onaio/molecule-action@master
+        uses: gofrolist/molecule-action@v2
         env:
           UREPORT_VERSION: ${{ steps.ureport_version.outputs.tag }}
 
