@@ -45,3 +45,8 @@ def test_ureport_app_files(host):
     assert virtualenv.group == "www-data"
     assert virtualenv.is_directory
     assert oct(virtualenv.mode) == "0o755"
+
+
+def test_ureport_service_is_up(host):
+    sock = host.socket("unix:///var/run/ureport/ureport.sock")
+    assert sock.is_listening
