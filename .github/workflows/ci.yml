@@ -9,6 +9,13 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      - name: Get latest UReport version
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: rapidpro/ureport
+          prefix: v
+        id: ureport_version
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -16,6 +23,8 @@ jobs:
 
       - name: Run Molecule tests
         uses: onaio/molecule-action@master
+        env:
+          UREPORT_VERSION: ${{ steps.ureport_version.outputs.tag }}
 
   release:
     name: Release

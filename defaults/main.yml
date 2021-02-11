@@ -6,7 +6,7 @@ ureport_system_user_home: "/home/{{ ureport_system_user }}"
 
 # git
 ureport_git_url: "https://github.com/rapidpro/ureport.git"
-ureport_git_branch: "v1.1.173"
+ureport_git_branch: ""
 
 # system-wide dependencies
 ureport_python_source_version: "3.6"

@@ -5,6 +5,8 @@ import testinfra.utils.ansible_runner
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
+UREPORT_VERSION = os.environ['UREPORT_VERSION']
+
 
 def test_ureport_services(host):
     ureport = host.service("ureport")
@@ -26,9 +28,11 @@ def test_ureport_app_files(host):
     assert app_dir.user == "ureport"
     assert app_dir.group == "www-data"
     assert app_dir.is_symlink
-    assert app_dir.linked_to == "/home/ureport/app-versioned/v1.1.173"
+    assert app_dir.linked_to == \
+        f"/home/ureport/app-versioned/{UREPORT_VERSION}"
 
-    app_versioned_dir = host.file("/home/ureport/app-versioned/v1.1.173")
+    app_versioned_dir = host.file(
+        f"/home/ureport/app-versioned/{UREPORT_VERSION}")
     assert app_versioned_dir.exists
     assert app_versioned_dir.user == "ureport"
     assert app_versioned_dir.group == "www-data"
